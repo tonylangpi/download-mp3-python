@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Download |{% endblock %}</title>
+    <link type="text/css" rel="shortcut icon" href="{{ url_for('static', filename ='imgs/descargar.png') }}"/>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+</head>
+
+<body id="body">
+    <div class="flex-container">
+        <header>
+            <h2>Descarga MP3 con un link de youtube</h2>
+        </header>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer>
+            <p>Developed by Langpi</p>
+        </footer>
+    </div>
+    <script>
+        let url = document.getElementById('url');
+        let validador = document.getElementById('validador');
+        let formulario = document.getElementById('envioDatos'); 
+        let regexUrl = /^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
+         formulario.addEventListener('submit', (e) => {
+           if(!regexUrl.test(url.value)){
+             e.preventDefault();
+             validador.innerHTML = 'Ingresa una URL valida';
+             validador.style.color = 'red';
+           }
+         });
+     </script>
+</body>
+</html>
